@@ -1,0 +1,20 @@
+{
+  "annotations": {
+    "changelogDate": "20241030181639"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Teacher",
+  "relationships": []
+}

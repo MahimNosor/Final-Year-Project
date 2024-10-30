@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (classLeaderboard(); as classLeaderboardRef) {
+      <div>
+        <h2 data-cy="classLeaderboardDetailsHeading">
+          <span jhiTranslate="finalYearProjectApp.classLeaderboard.detail.title">Class Leaderboard</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ classLeaderboardRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.classLeaderboard.rank">Rank</span></dt>
+          <dd>
+            <span>{{ classLeaderboardRef.rank }}</span>
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.classLeaderboard.totalPoints">Total Points</span></dt>
+          <dd>
+            <span>{{ classLeaderboardRef.totalPoints }}</span>
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.classLeaderboard.student">Student</span></dt>
+          <dd>
+            @if (classLeaderboard()!.student) {
+              <div>
+                <a [routerLink]="['/student', classLeaderboard()!.student?.id, 'view']">{{ classLeaderboardRef.student?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.classLeaderboard.studentClass">Student Class</span></dt>
+          <dd>
+            @if (classLeaderboard()!.studentClass) {
+              <div>
+                <a [routerLink]="['/student-class', classLeaderboard()!.studentClass?.id, 'view']">{{
+                  classLeaderboardRef.studentClass?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/class-leaderboard', classLeaderboardRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

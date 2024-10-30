@@ -8,7 +8,13 @@
       "entities": {
         "main": "Entities",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
-        "adminAuthority": "Authority"
+        "student": "Student",
+        "teacher": "Teacher",
+        "question": "Question",
+        "testCase": "Test Case",
+        "studentClass": "Student Class",
+        "globalLeaderboard": "Global Leaderboard",
+        "classLeaderboard": "Class Leaderboard"
       },
       "account": {
         "main": "Account",

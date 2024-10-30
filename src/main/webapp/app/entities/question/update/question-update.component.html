@@ -1,0 +1,179 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-question-heading"
+        data-cy="QuestionCreateUpdateHeading"
+        jhiTranslate="finalYearProjectApp.question.home.createOrEditLabel"
+      >
+        Create or edit a Question
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="finalYearProjectApp.question.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let titleRef = editForm.get('title')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_title" jhiTranslate="finalYearProjectApp.question.title">Title</label>
+          <input type="text" class="form-control" name="title" id="field_title" data-cy="title" formControlName="title" />
+          @if (titleRef.invalid && (titleRef.dirty || titleRef.touched)) {
+            <div>
+              @if (editForm.get('title')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let difficultyRef = editForm.get('difficulty')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_difficulty" jhiTranslate="finalYearProjectApp.question.difficulty">Difficulty</label>
+          <select class="form-control" name="difficulty" formControlName="difficulty" id="field_difficulty" data-cy="difficulty">
+            <option [ngValue]="null">{{ 'finalYearProjectApp.QuestionDifficulty.null' | translate }}</option>
+            @for (questionDifficulty of questionDifficultyValues; track $index) {
+              <option [value]="questionDifficulty">{{ 'finalYearProjectApp.QuestionDifficulty.' + questionDifficulty | translate }}</option>
+            }
+          </select>
+          @if (difficultyRef.invalid && (difficultyRef.dirty || difficultyRef.touched)) {
+            <div>
+              @if (editForm.get('difficulty')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let descriptionRef = editForm.get('description')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_description" jhiTranslate="finalYearProjectApp.question.description">Description</label>
+          <textarea
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          ></textarea>
+          @if (descriptionRef.invalid && (descriptionRef.dirty || descriptionRef.touched)) {
+            <div>
+              @if (editForm.get('description')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_solution" jhiTranslate="finalYearProjectApp.question.solution">Solution</label>
+          <textarea class="form-control" name="solution" id="field_solution" data-cy="solution" formControlName="solution"></textarea>
+        </div>
+
+        @let languageRef = editForm.get('language')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_language" jhiTranslate="finalYearProjectApp.question.language">Language</label>
+          <select class="form-control" name="language" formControlName="language" id="field_language" data-cy="language">
+            <option [ngValue]="null">{{ 'finalYearProjectApp.ProgrammingLanguage.null' | translate }}</option>
+            @for (programmingLanguage of programmingLanguageValues; track $index) {
+              <option [value]="programmingLanguage">
+                {{ 'finalYearProjectApp.ProgrammingLanguage.' + programmingLanguage | translate }}
+              </option>
+            }
+          </select>
+          @if (languageRef.invalid && (languageRef.dirty || languageRef.touched)) {
+            <div>
+              @if (editForm.get('language')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let preLoadedRef = editForm.get('preLoaded')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_preLoaded" jhiTranslate="finalYearProjectApp.question.preLoaded">Pre Loaded</label>
+          <input type="checkbox" class="form-check" name="preLoaded" id="field_preLoaded" data-cy="preLoaded" formControlName="preLoaded" />
+          @if (preLoadedRef.invalid && (preLoadedRef.dirty || preLoadedRef.touched)) {
+            <div>
+              @if (editForm.get('preLoaded')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_teacher" jhiTranslate="finalYearProjectApp.question.teacher">Teacher</label>
+          <select
+            class="form-control"
+            id="field_teacher"
+            data-cy="teacher"
+            name="teacher"
+            formControlName="teacher"
+            [compareWith]="compareTeacher"
+          >
+            <option [ngValue]="null"></option>
+            @for (teacherOption of teachersSharedCollection; track $index) {
+              <option [ngValue]="teacherOption">{{ teacherOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_studentClass" jhiTranslate="finalYearProjectApp.question.studentClass">Student Class</label>
+          <select
+            class="form-control"
+            id="field_studentClass"
+            data-cy="studentClass"
+            name="studentClass"
+            formControlName="studentClass"
+            [compareWith]="compareStudentClass"
+          >
+            <option [ngValue]="null"></option>
+            @for (studentClassOption of studentClassesSharedCollection; track $index) {
+              <option [ngValue]="studentClassOption">{{ studentClassOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="field_students" jhiTranslate="finalYearProjectApp.question.students">Students</label>
+          <select
+            class="form-control"
+            id="field_students"
+            data-cy="students"
+            multiple
+            name="students"
+            formControlName="students"
+            [compareWith]="compareStudent"
+          >
+            @for (studentOption of studentsSharedCollection; track $index) {
+              <option [ngValue]="studentOption">{{ studentOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

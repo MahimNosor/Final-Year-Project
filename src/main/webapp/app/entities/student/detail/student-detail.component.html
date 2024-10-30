@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (student(); as studentRef) {
+      <div>
+        <h2 data-cy="studentDetailsHeading"><span jhiTranslate="finalYearProjectApp.student.detail.title">Student</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ studentRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.student.name">Name</span></dt>
+          <dd>
+            <span>{{ studentRef.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.student.email">Email</span></dt>
+          <dd>
+            <span>{{ studentRef.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.student.points">Points</span></dt>
+          <dd>
+            <span>{{ studentRef.points }}</span>
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.student.questions">Questions</span></dt>
+          <dd>
+            @for (questions of studentRef.questions; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/question', questions.id, 'view']">{{ questions?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.student.classes">Classes</span></dt>
+          <dd>
+            @for (classes of studentRef.classes; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/student-class', classes.id, 'view']">{{ classes?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/student', studentRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

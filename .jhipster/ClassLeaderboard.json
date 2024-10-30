@@ -1,0 +1,33 @@
+{
+  "annotations": {
+    "changelogDate": "20241030181644"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "rank",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "totalPoints",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "ClassLeaderboard",
+  "relationships": [
+    {
+      "otherEntityName": "student",
+      "relationshipName": "student",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "studentClass",
+      "relationshipName": "studentClass",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "annotations": {
+    "changelogDate": "20241030181640"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "difficulty",
+      "fieldType": "QuestionDifficulty",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "BEGINNER,MEDIUM"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "TextBlob",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "solution",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "language",
+      "fieldType": "ProgrammingLanguage",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "JAVA,PYTHON,JAVASCRIPT,CSHARP,C,CPP"
+    },
+    {
+      "fieldName": "preLoaded",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Question",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "teacher",
+      "relationshipName": "teacher",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "studentClass",
+      "relationshipName": "studentClass",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "questions",
+      "relationshipName": "students",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

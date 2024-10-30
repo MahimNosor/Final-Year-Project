@@ -1,0 +1,40 @@
+{
+  "annotations": {
+    "changelogDate": "20241030181638"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "points",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "Student",
+  "pagination": "infinite-scroll",
+  "relationships": [
+    {
+      "otherEntityName": "question",
+      "otherEntityRelationshipName": "students",
+      "relationshipName": "questions",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "studentClass",
+      "otherEntityRelationshipName": "students",
+      "relationshipName": "classes",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-many"
+    }
+  ]
+}

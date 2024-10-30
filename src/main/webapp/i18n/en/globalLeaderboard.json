@@ -1,0 +1,27 @@
+{
+  "finalYearProjectApp": {
+    "globalLeaderboard": {
+      "home": {
+        "title": "Global Leaderboards",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Global Leaderboard",
+        "createOrEditLabel": "Create or edit a Global Leaderboard",
+        "search": "Search for Global Leaderboard",
+        "notFound": "No Global Leaderboards found"
+      },
+      "created": "A new Global Leaderboard is created with identifier {{ param }}",
+      "updated": "A Global Leaderboard is updated with identifier {{ param }}",
+      "deleted": "A Global Leaderboard is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Global Leaderboard {{ id }}?"
+      },
+      "detail": {
+        "title": "Global Leaderboard"
+      },
+      "id": "ID",
+      "rank": "Rank",
+      "totalPoints": "Total Points",
+      "student": "Student"
+    }
+  }
+}

@@ -1,0 +1,85 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (question(); as questionRef) {
+      <div>
+        <h2 data-cy="questionDetailsHeading"><span jhiTranslate="finalYearProjectApp.question.detail.title">Question</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ questionRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.question.title">Title</span></dt>
+          <dd>
+            <span>{{ questionRef.title }}</span>
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.question.difficulty">Difficulty</span></dt>
+          <dd>
+            <span [jhiTranslate]="'finalYearProjectApp.QuestionDifficulty.' + (questionRef.difficulty ?? 'null')">{{
+              { null: '', BEGINNER: 'BEGINNER', MEDIUM: 'MEDIUM' }[questionRef.difficulty ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.question.description">Description</span></dt>
+          <dd>
+            <span>{{ questionRef.description }}</span>
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.question.solution">Solution</span></dt>
+          <dd>
+            <span>{{ questionRef.solution }}</span>
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.question.language">Language</span></dt>
+          <dd>
+            <span [jhiTranslate]="'finalYearProjectApp.ProgrammingLanguage.' + (questionRef.language ?? 'null')">{{
+              { null: '', JAVA: 'JAVA', PYTHON: 'PYTHON', JAVASCRIPT: 'JAVASCRIPT', CSHARP: 'CSHARP', C: 'C', CPP: 'CPP' }[
+                questionRef.language ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.question.preLoaded">Pre Loaded</span></dt>
+          <dd>
+            <span>{{ questionRef.preLoaded }}</span>
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.question.teacher">Teacher</span></dt>
+          <dd>
+            @if (question()!.teacher) {
+              <div>
+                <a [routerLink]="['/teacher', question()!.teacher?.id, 'view']">{{ questionRef.teacher?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.question.studentClass">Student Class</span></dt>
+          <dd>
+            @if (question()!.studentClass) {
+              <div>
+                <a [routerLink]="['/student-class', question()!.studentClass?.id, 'view']">{{ questionRef.studentClass?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="finalYearProjectApp.question.students">Students</span></dt>
+          <dd>
+            @for (students of questionRef.students; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/student', students.id, 'view']">{{ students?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/question', questionRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

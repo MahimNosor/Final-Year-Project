@@ -1,0 +1,28 @@
+{
+  "finalYearProjectApp": {
+    "classLeaderboard": {
+      "home": {
+        "title": "Class Leaderboards",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Class Leaderboard",
+        "createOrEditLabel": "Create or edit a Class Leaderboard",
+        "search": "Search for Class Leaderboard",
+        "notFound": "No Class Leaderboards found"
+      },
+      "created": "A new Class Leaderboard is created with identifier {{ param }}",
+      "updated": "A Class Leaderboard is updated with identifier {{ param }}",
+      "deleted": "A Class Leaderboard is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Class Leaderboard {{ id }}?"
+      },
+      "detail": {
+        "title": "Class Leaderboard"
+      },
+      "id": "ID",
+      "rank": "Rank",
+      "totalPoints": "Total Points",
+      "student": "Student",
+      "studentClass": "Student Class"
+    }
+  }
+}

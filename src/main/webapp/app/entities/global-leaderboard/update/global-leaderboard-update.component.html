@@ -1,0 +1,101 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-global-leaderboard-heading"
+        data-cy="GlobalLeaderboardCreateUpdateHeading"
+        jhiTranslate="finalYearProjectApp.globalLeaderboard.home.createOrEditLabel"
+      >
+        Create or edit a Global Leaderboard
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="finalYearProjectApp.globalLeaderboard.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let rankRef = editForm.get('rank')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_rank" jhiTranslate="finalYearProjectApp.globalLeaderboard.rank">Rank</label>
+          <input type="number" class="form-control" name="rank" id="field_rank" data-cy="rank" formControlName="rank" />
+          @if (rankRef.invalid && (rankRef.dirty || rankRef.touched)) {
+            <div>
+              @if (editForm.get('rank')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small class="form-text text-danger" [hidden]="!editForm.get('rank')?.errors?.number" jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let totalPointsRef = editForm.get('totalPoints')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_totalPoints" jhiTranslate="finalYearProjectApp.globalLeaderboard.totalPoints"
+            >Total Points</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="totalPoints"
+            id="field_totalPoints"
+            data-cy="totalPoints"
+            formControlName="totalPoints"
+          />
+          @if (totalPointsRef.invalid && (totalPointsRef.dirty || totalPointsRef.touched)) {
+            <div>
+              @if (editForm.get('totalPoints')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('totalPoints')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_student" jhiTranslate="finalYearProjectApp.globalLeaderboard.student">Student</label>
+          <select
+            class="form-control"
+            id="field_student"
+            data-cy="student"
+            name="student"
+            formControlName="student"
+            [compareWith]="compareStudent"
+          >
+            <option [ngValue]="null"></option>
+            @for (studentOption of studentsSharedCollection; track $index) {
+              <option [ngValue]="studentOption">{{ studentOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

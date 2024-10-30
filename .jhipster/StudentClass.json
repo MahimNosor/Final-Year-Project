@@ -1,0 +1,30 @@
+{
+  "annotations": {
+    "changelogDate": "20241030181642"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "className",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "StudentClass",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "teacher",
+      "relationshipName": "teacher",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "classes",
+      "relationshipName": "students",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    }
+  ]
+}

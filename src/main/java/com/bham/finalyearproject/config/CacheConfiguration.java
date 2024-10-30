@@ -46,6 +46,17 @@ public class CacheConfiguration {
             createCache(cm, com.bham.finalyearproject.domain.User.class.getName());
             createCache(cm, com.bham.finalyearproject.domain.Authority.class.getName());
             createCache(cm, com.bham.finalyearproject.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.bham.finalyearproject.domain.Student.class.getName());
+            createCache(cm, com.bham.finalyearproject.domain.Student.class.getName() + ".questions");
+            createCache(cm, com.bham.finalyearproject.domain.Student.class.getName() + ".classes");
+            createCache(cm, com.bham.finalyearproject.domain.Teacher.class.getName());
+            createCache(cm, com.bham.finalyearproject.domain.Question.class.getName());
+            createCache(cm, com.bham.finalyearproject.domain.Question.class.getName() + ".students");
+            createCache(cm, com.bham.finalyearproject.domain.TestCase.class.getName());
+            createCache(cm, com.bham.finalyearproject.domain.StudentClass.class.getName());
+            createCache(cm, com.bham.finalyearproject.domain.StudentClass.class.getName() + ".students");
+            createCache(cm, com.bham.finalyearproject.domain.GlobalLeaderboard.class.getName());
+            createCache(cm, com.bham.finalyearproject.domain.ClassLeaderboard.class.getName());
             // jhipster-needle-caffeine-add-entry
         };
     }

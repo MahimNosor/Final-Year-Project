@@ -1,0 +1,11 @@
+id;title;difficulty;description;solution;language;pre_loaded
+1;necklace lest meh;BEGINNER;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;JAVA;false
+2;phooey;MEDIUM;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;JAVASCRIPT;false
+3;righteously deck impractical;MEDIUM;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;PYTHON;true
+4;brr hairy;BEGINNER;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;CSHARP;false
+5;formula inspection;BEGINNER;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;CSHARP;true
+6;mobility buttery hm;BEGINNER;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;PYTHON;true
+7;celebrate;MEDIUM;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;JAVASCRIPT;false
+8;truly brr;BEGINNER;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;CPP;true
+9;potable;MEDIUM;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;PYTHON;true
+10;incidentally;MEDIUM;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;CPP;false

@@ -1,0 +1,77 @@
+entity Student {
+  name String required,
+  email String required,
+  points Integer
+}
+paginate Student with infinite-scroll
+
+entity Teacher {
+  name String required,
+  email String required
+}
+
+entity Question {
+  title String required,
+  difficulty QuestionDifficulty required,
+  description TextBlob required,
+  solution TextBlob,
+  language ProgrammingLanguage required,
+  preLoaded Boolean required
+}
+paginate Question with pagination
+service Question with serviceClass
+
+entity TestCase {
+  input String required,
+  expectedOutput String required,
+  description String
+}
+paginate TestCase with pagination
+service TestCase with serviceClass
+
+entity StudentClass {  // Renamed from Class to StudentClass
+  className String required
+}
+paginate StudentClass with pagination
+
+entity GlobalLeaderboard {
+  rank Integer required,
+  totalPoints Integer required
+}
+
+entity ClassLeaderboard {
+  rank Integer required,
+  totalPoints Integer required
+}
+
+enum QuestionDifficulty {
+  BEGINNER,
+  MEDIUM
+}
+
+enum ProgrammingLanguage {
+  JAVA,
+  PYTHON,
+  JAVASCRIPT,
+  CSHARP,
+  C,
+  CPP
+}
+
+relationship ManyToMany {
+  Student{questions} to Question{students}
+}
+
+relationship ManyToOne {
+  Question{teacher} to Teacher,
+  Question{studentClass} to StudentClass,
+  StudentClass{teacher} to Teacher,
+  GlobalLeaderboard{student} to Student,
+  ClassLeaderboard{student} to Student,
+  ClassLeaderboard{studentClass} to StudentClass,
+  TestCase{question} to Question
+}
+
+relationship ManyToMany {
+  StudentClass{students} to Student{classes}
+}
